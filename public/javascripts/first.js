@@ -1,10 +1,23 @@
-var Mydiv = React.createClass({
-  render: function(){
-    return <div onClick={this.showMsg.bind(this,1)}>first react</div>;
+var MyTable = React.createClass({
+  getInitialState:function(){
+    return{
+      filter: 'fff',
+    };
   },
-  showMsg:function(num){
-    alert('you input n:' + num + 'laomao');
+  render: function(){
+    return (
+    <div>
+      <div><span>filter:</span><input value={this.state.filter} onChange={(e)=>this.setFilter(e)}/><button onClick={()=>this.showFilter()}>获取</button></div>
+      <div></div>
+    </div>
+    );
+  },
+  setFilter:function(e){
+    this.setState({filter: e.target.value});
+  },
+  showFilter:function(){
+    alert(this.state.filter);
   }
 });
 
-ReactDOM.render(<Mydiv></Mydiv>, document.getElementById('container'));
+ReactDOM.render(<MyTable></MyTable>, document.getElementById('container'));
